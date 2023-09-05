@@ -21,20 +21,28 @@
                                     <th>Address</th>
                                     <th>Actions</th>
                                 </tr>
-                                @foreach($students as $student)
-                                <tr>
-                                    <td>{{$loop->iteration}}</td>
-                                    <td>{{$student->name}}</td>
-                                    <td>{{$student->email}}</td>
-                                    <td>{{$student->phone}}</td>
-                                    <td>{{$student->address}}</td>
-                                    <td class="d-flex">
-                                        <a href="{{route('edit',['id'=>$student->id])}}" class="btn btn-sm btn-success">Update</a>
-                                        <a href="{{route('delete',['id'=>$student->id])}}" class="btn btn-sm btn-danger"
-                                            onclick="return confirm('Are you sure you want to delete?')">Delete</a>
-                                    </td>
-                                </tr>
-                                @endforeach
+                                @foreach ($students as $student)
+                                    <tr>
+                                        <td>{{ $loop->iteration }}</td>
+                                        <td>{{ $student->name }}</td>
+                                        <td>{{ $student->email }}</td>
+                                        <td>{{ $student->phone }}</td>
+                                        <td>{{ $student->address }}</td>
+                                        <td class="d-flex">
+                                            <a href="{{ route('edit', ['id' => $student->id]) }}"
+                                                class="btn btn-sm btn-success">Update</a>
+                                            {{-- <a href="{{route('delete',['id'=>$student->id])}}" class="btn btn-sm btn-danger"
+                                            onclick="return confirm('Are you sure you want to delete?')">Delete</a> --}}
+                                            <form action="{{ route('delete') }}" method="POST">
+                                                @csrf
+                                                <input type="hidden" name="id" value="{{ $student->id }}">
+                                                <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete?')">
+                                                 Delete
+                                                </button>
+                                            </form>
+                                        </td>
+                                    </tr>
+     @endforeach
                             </table>
                         </div>
                     </div>
@@ -42,5 +50,4 @@
             </div>
         </div>
     </section>
-
 @endsection
