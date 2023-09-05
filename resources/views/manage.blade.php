@@ -30,7 +30,8 @@
                                     <td>{{$student->address}}</td>
                                     <td class="d-flex">
                                         <a href="{{route('edit',['id'=>$student->id])}}" class="btn btn-sm btn-success">Update</a>
-                                        <a href="{{route('delete',['id'=>$student->id])}}" class="btn btn-sm btn-danger">Delete</a>
+                                        <a href="{{route('delete',['id'=>$student->id])}}" class="btn btn-sm btn-danger"
+                                            onclick="return confirm('Are you sure you want to delete?')">Delete</a>
                                     </td>
                                 </tr>
                                 @endforeach
